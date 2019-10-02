@@ -1,2 +1,2 @@
-# GrupArbete
+# Tech Store
 E-Handel sida
