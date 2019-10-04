@@ -10,7 +10,10 @@ function loadProducts() {
         listOfProducts = products;
         addProductsToWebpage();
     });
+    
 }
+
+
 
 
 function initSite() {
