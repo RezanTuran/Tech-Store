@@ -55,3 +55,7 @@ a:hover{
     color: #212121;
     font-size: 30px;
 }
+img{
+    height: 30rem;
+    width: 20rem;
+}
