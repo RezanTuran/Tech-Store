@@ -38,12 +38,16 @@ function addProductsToWebpage() {
         var descriptionlistOfProducts = document.createElement("p");
         var imagelistOfProducts = document.createElement("img"); 
         var pricelistOfProducts = document.createElement("p");
-      
+        var buttonlistOfProducts = document.createElement("button");
      
         titlelistOfProducts.innerText = selectedProduct.title;
         descriptionlistOfProducts.innerText = selectedProduct.description;
         imagelistOfProducts.innerText = selectedProduct.image;
-        pricelistOfProducts.innerText = selectedProduct.price;
+        pricelistOfProducts.innerText = selectedProduct.price + " " + "KR";
+        buttonlistOfProducts.innerHTML = "Lägg till i kundvagnen";
+
+        
+        
 
         imagelistOfProducts.src= "./assets/" + selectedProduct.image;
 
@@ -51,6 +55,7 @@ function addProductsToWebpage() {
         infoList.appendChild(descriptionlistOfProducts);
         infoList.appendChild(imagelistOfProducts);
         infoList.appendChild(pricelistOfProducts);
+        infoList.appendChild(buttonlistOfProducts);
 
         productCard.appendChild(infoList);
         continer.appendChild(productCard);
@@ -58,15 +63,9 @@ function addProductsToWebpage() {
     }
 
     body.appendChild(continer);
+
 }
 
-    console.log(listOfProducts);
-
-    // Add your code here, remember to brake your code in to smaller function blocks
-    // to reduce complexity and increase readability. Each function should have
-    // an explainetory comment like the one for this function, see row 22.
-    
-    // TODO: Remove the console.log and these comments when you've read them.
 
 
 
