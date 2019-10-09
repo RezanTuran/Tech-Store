@@ -12,6 +12,10 @@ function loadProducts() {
     
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 function initSite() {
     loadProducts();
 }
@@ -19,6 +23,7 @@ function initSite() {
 function addProductsToWebpage() {
     var body =document.getElementsByTagName("body")[0]
     console.log(body);
+<<<<<<< Updated upstream
     renderProduct();
 }
 
@@ -32,6 +37,34 @@ function renderProduct(){
 function createProductcard(product) {
     var productContainer = document.createElement("div");
     productContainer.classList = "productContainer"
+=======
+    var continer = document.createElement("div");
+    continer.classList = "container";
+
+
+    for(var i = 0; i< listOfProducts.length; i++){
+        var selectedProduct = listOfProducts[i]
+        var productCard=document.createElement("div");
+        productCard.classList = "productCard"; /** Gör en class till Div och Styla Diven */
+        var infoList=document.createElement("ul");
+        var titlelistOfProducts = document.createElement("h3");
+        var descriptionlistOfProducts = document.createElement("p");
+        var imagelistOfProducts = document.createElement("img");
+        imagelistOfProducts.classList = "imagelistOfProducts"; /** Gör en class till Img-tag och Styla Img-tagen */
+        var pricelistOfProducts = document.createElement("h5");
+        var buttonlistOfProducts = document.createElement("button");
+        buttonlistOfProducts.classList = "fas fa-cart-arrow-down btn btn-primary"; /** Gör en class till button och Styla Buttonen */
+    
+
+        titlelistOfProducts.innerText = selectedProduct.title;
+        descriptionlistOfProducts.innerText = selectedProduct.description;
+        imagelistOfProducts.innerText = selectedProduct.image;
+        pricelistOfProducts.innerText = selectedProduct.price + " " + " "+  "KR";
+        buttonlistOfProducts.innerHTML = " " + "Lägg till i kundvagnen";
+        
+        
+        imagelistOfProducts.src= "./assets/" + selectedProduct.image;
+>>>>>>> Stashed changes
 
     var infoList= document.createElement("ul");
     var titlelistOfProducts = document.createElement("h3");
@@ -63,6 +96,14 @@ function createProductcard(product) {
     return productContainer;
 }
 
+<<<<<<< Updated upstream
 function renderSelectedProduct(product) {
     console.log(product)   
 }
+=======
+
+
+
+
+// ### Shoppong cart .html  ### ///
+>>>>>>> Stashed changes
