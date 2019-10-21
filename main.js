@@ -1,5 +1,7 @@
 var listOfProducts;
 
+// TEST
+
 function loadProducts() {
     fetch("./products.json")
     .then(function(response) {
