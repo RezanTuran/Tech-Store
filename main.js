@@ -17,7 +17,7 @@ function initSite() {
 }
 
 function addProductsToWebpage() {
-    var body =document.getElementsByTagName("body")[0]
+    var body = document.getElementsByTagName("body")[0]
     console.log(body);
     renderProduct();
 }
@@ -39,17 +39,16 @@ function createProductcard(product) {
     var imagelistOfProducts = document.createElement("img"); 
     var pricelistOfProducts = document.createElement("p");
     var buttonlistOfProducts = document.createElement("button");
-     
+    
+    imagelistOfProducts.classList = "imagelistOfProducts"
     titlelistOfProducts.innerText = product.title;
     descriptionlistOfProducts.innerText = product.description;
     imagelistOfProducts.innerText = product.image;
     pricelistOfProducts.innerText = product.price + " " + "KR";
     buttonlistOfProducts.innerHTML = "Lägg till i kundvagnen";
 
-        
-
     buttonlistOfProducts.onclick = function() {
-    renderSelectedProduct(product)
+        renderSelectedProduct(product)
     }
         
     imagelistOfProducts.src= "./assets/" + product.image;
