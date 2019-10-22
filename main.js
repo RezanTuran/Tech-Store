@@ -1,7 +1,6 @@
 var listOfProducts;
 
-// TEST
-
+/** Get products from the json file and store it in a gobal variable */
 function loadProducts() {
     fetch("./products.json")
     .then(function(response) {
@@ -14,77 +13,60 @@ function loadProducts() {
     
 }
 
+
+
+
 function initSite() {
     loadProducts();
+    // This would also be a good place to initialize other parts of the UI
 }
 
+
+/** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
-    var body = document.getElementsByTagName("body")[0]
+    // Check your console to see that the products are stored in the listOfProducts varible.
+    var body =document.getElementsByTagName("body")[0]
     console.log(body);
-    renderProduct();
-}
+    var continer = document.createElement("div");
+    continer.classList = "container"
 
-function renderProduct(){
-    for (var i = 0; i < listOfProducts.length; i++) {
-        var productContainer = createProductcard(listOfProducts[i]);
-        document.getElementById("mainContainer").appendChild(productContainer);
+    for(var i = 0; i< listOfProducts.length; i++){
+        var selectedProduct = listOfProducts[i]
+        var productCard=document.createElement("div");
+        var infoList=document.createElement("ul");
+        var titlelistOfProducts = document.createElement("h3");
+        var descriptionlistOfProducts = document.createElement("p");
+        var imagelistOfProducts = document.createElement("img"); 
+        var pricelistOfProducts = document.createElement("p");
+      
+     
+        titlelistOfProducts.innerText = selectedProduct.title;
+        descriptionlistOfProducts.innerText = selectedProduct.description;
+        imagelistOfProducts.innerText = selectedProduct.image;
+        pricelistOfProducts.innerText = selectedProduct.price;
+
+        imagelistOfProducts.src= "./assets/" + selectedProduct.image;
+
+        infoList.appendChild(titlelistOfProducts);
+        infoList.appendChild(descriptionlistOfProducts);
+        infoList.appendChild(imagelistOfProducts);
+        infoList.appendChild(pricelistOfProducts);
+
+        productCard.appendChild(infoList);
+        continer.appendChild(productCard);
+        
     }
+
+    body.appendChild(continer);
 }
 
-function createProductcard(product) {
-    var productContainer = document.createElement("div");
-    productContainer.classList = "productContainer"
+    console.log(listOfProducts);
 
-    var infoList= document.createElement("ul");
-    var titlelistOfProducts = document.createElement("h3");
-    var descriptionlistOfProducts = document.createElement("p");
-    var imagelistOfProducts = document.createElement("img"); 
-    var pricelistOfProducts = document.createElement("p");
-    var buttonlistOfProducts = document.createElement("button");
+    // Add your code here, remember to brake your code in to smaller function blocks
+    // to reduce complexity and increase readability. Each function should have
+    // an explainetory comment like the one for this function, see row 22.
     
-    imagelistOfProducts.classList = "imagelistOfProducts"
-    titlelistOfProducts.innerText = product.title;
-    descriptionlistOfProducts.innerText = product.description;
-    imagelistOfProducts.innerText = product.image;
-    pricelistOfProducts.innerText = product.price + " " + "KR";
-    buttonlistOfProducts.innerHTML = "Lägg till i kundvagnen";
+    // TODO: Remove the console.log and these comments when you've read them.
 
-    buttonlistOfProducts.onclick = function() {
-        addProductToCart(product)
-    }
-        
-    imagelistOfProducts.src= "./assets/" + product.image;
-    productContainer.appendChild(infoList);
-    productContainer.appendChild(titlelistOfProducts);
-    productContainer.appendChild(descriptionlistOfProducts);
-    productContainer.appendChild(imagelistOfProducts);
-    productContainer.appendChild(pricelistOfProducts);
-    productContainer.appendChild(buttonlistOfProducts);
 
-    return productContainer;
-}
 
-function addProductToCart(product) {
-    var collectedCart = JSON.parse(localStorage.getItem('cart'));
-
-    if(collectedCart) {
-        collectedCart.push(product);
-        
-        document.getElementById("counter").innerHTML = collectedCart.length;
-    } else {
-        collectedCart = [];
-        collectedCart.push(product);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(collectedCart));
-
-    console.log(collectedCart);
-
-        // Hämta cart från localStorage. 
-    // Kolla om cartlistan du hämtat inte existerar.
-    // Om ej existerar, skapa en ny lista & pusha in den nya produkten.
-    // Om existerar, pusha in den nya produkten.
-    // Spara upp listan till localStorage
-
-    console.log(product)   
-}
