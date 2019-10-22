@@ -50,7 +50,7 @@ function createProductcard(product) {
     buttonlistOfProducts.innerHTML = "Lägg till i kundvagnen";
 
     buttonlistOfProducts.onclick = function() {
-        renderSelectedProduct(product)
+        addProductToCart(product)
     }
         
     imagelistOfProducts.src= "./assets/" + product.image;
@@ -64,6 +64,27 @@ function createProductcard(product) {
     return productContainer;
 }
 
-function renderSelectedProduct(product) {
+function addProductToCart(product) {
+    var collectedCart = JSON.parse(localStorage.getItem('cart'));
+
+    if(collectedCart) {
+        collectedCart.push(product);
+        
+        document.getElementById("counter").innerHTML = collectedCart.length;
+    } else {
+        collectedCart = [];
+        collectedCart.push(product);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(collectedCart));
+
+    console.log(collectedCart);
+
+        // Hämta cart från localStorage. 
+    // Kolla om cartlistan du hämtat inte existerar.
+    // Om ej existerar, skapa en ny lista & pusha in den nya produkten.
+    // Om existerar, pusha in den nya produkten.
+    // Spara upp listan till localStorage
+
     console.log(product)   
 }
