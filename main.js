@@ -70,12 +70,12 @@ function addProductToCart(product) {
     if(collectedCart) {
         collectedCart.push(product);
         
-        document.getElementById("counter").innerHTML = collectedCart.length;
+        
     } else {
         collectedCart = [];
         collectedCart.push(product);
     }
-
+    document.getElementById("counter").innerHTML = collectedCart.length;
     localStorage.setItem('cart', JSON.stringify(collectedCart));
 
     console.log(collectedCart);
