@@ -31,6 +31,7 @@ h3{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin: 20px;
 }
 p{
     font-weight: bolder;
@@ -38,6 +39,8 @@ p{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    font-weight: 800;
+    font-size: 14px;
 }
 
 
@@ -46,6 +49,7 @@ p{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 5em;
 }
 .title-and-shopping-cart{
     display: flex;
@@ -94,6 +98,7 @@ a:hover{
     border-color: #5596F5;
     font-size: 20px;
     height: 45px;
+    border-radius: 5%;
 }
 p{
     font-size: 13px;

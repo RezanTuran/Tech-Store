@@ -42,12 +42,13 @@ function createProductcard(product) {
     var pricelistOfProducts = document.createElement("p");
     var buttonlistOfProducts = document.createElement("button");
     
-    imagelistOfProducts.classList = "imagelistOfProducts"
+    imagelistOfProducts.classList = "imagelistOfProducts";
     titlelistOfProducts.innerText = product.title;
     descriptionlistOfProducts.innerText = product.description;
     imagelistOfProducts.innerText = product.image;
+    buttonlistOfProducts.classList = "fas fa-cart-arrow-down btn btn-primary";
     pricelistOfProducts.innerText = product.price + " " + "KR";
-    buttonlistOfProducts.innerHTML = "Lägg till i kundvagnen";
+    buttonlistOfProducts.innerHTML = " Lägg till i kundvagnen";
 
     buttonlistOfProducts.onclick = function() {
         addProductToCart(product)
