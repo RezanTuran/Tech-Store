@@ -41,7 +41,7 @@ p{
 }
 
 
-.container{
+.productContainer{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -79,11 +79,32 @@ a:hover{
     color: #212121;
     font-size: 30px;
 }
-img{
-    height: 20rem;
-    width: 15rem;
-    font-weight: bolder;
+
+/* ### ShoppingCart.html Styles Finish ### */
+.productCard{
+    margin-top: 60px;
+    text-align: center;
 }
-ul{
-  
+.imagelistOfProducts{
+    width: 265px;
+    height: 455px;
+}
+.btn-primary{
+    background-color: #5596F5;
+    border-color: #5596F5;
+    font-size: 20px;
+    height: 45px;
+}
+p{
+    font-size: 13px;
+}
+h5{
+    font-weight: 900;
+    font-size: 15px;
+}
+#count{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
 }
