@@ -1,7 +1,6 @@
 var listOfProducts;
 
 // TEST
-
 function loadProducts() {
     fetch("./products.json")
     .then(function(response) {
@@ -16,6 +15,7 @@ function loadProducts() {
 
 function initSite() {
     loadProducts();
+    saveProductCount();
 }
 
 function addProductsToWebpage() {
@@ -70,8 +70,6 @@ function addProductToCart(product) {
 
     if(collectedCart) {
         collectedCart.push(product);
-        
-        
     } else {
         collectedCart = [];
         collectedCart.push(product);
@@ -79,13 +77,11 @@ function addProductToCart(product) {
     document.getElementById("counter").innerHTML = collectedCart.length;
     localStorage.setItem('cart', JSON.stringify(collectedCart));
 
-    console.log(collectedCart);
-
-        // Hämta cart från localStorage. 
-    // Kolla om cartlistan du hämtat inte existerar.
-    // Om ej existerar, skapa en ny lista & pusha in den nya produkten.
-    // Om existerar, pusha in den nya produkten.
-    // Spara upp listan till localStorage
 
     console.log(product)   
+}
+
+function saveProductCount() {
+    var collectedCart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById("counter").innerHTML = collectedCart.length;
 }
