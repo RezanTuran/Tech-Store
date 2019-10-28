@@ -54,7 +54,6 @@ function removeProductFromCart(index) {
         collectedCart.splice(index, 1);
     }
     localStorage.setItem('cart', JSON.stringify(collectedCart));
-    console.log(collectedCart)
     renderProduct();
     saveProductCount()
  }
@@ -63,3 +62,13 @@ function saveProductCount() {
    var collectedCart = JSON.parse(localStorage.getItem('cart'));
    document.getElementById("counter").innerHTML = collectedCart.length;
 }
+function removeAllProducts(){
+   var collectedCart = getCartArray()
+    if(collectedCart) {
+        collectedCart.length=0
+    }
+    localStorage.setItem('cart', JSON.stringify(collectedCart));
+    alert("Tack För Ditt Köp!");
+    renderProduct();
+    saveProductCount()
+ }
