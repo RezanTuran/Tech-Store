@@ -11,6 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- ### CDN Link For Jquery  ###-->
         <link rel="stylesheet" href="css/style.css"> 
         <script src="./javascript/cart.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     </head>
     <body onload="initSite()">
         <header>
@@ -19,17 +20,19 @@
                 <a href="shopping-cart.html"><span><i id="counter" class="fas"></i></span><i class="fas fa-shopping-cart"></i></a>
             </div>
         </header>
-
-        <div class="shoppincart-title-div">
-            <h1 class="shoppincart-title"><i class="fas fa-shopping-cart shoppincart-title-icon"></i> Kundvagn</h1>
-        </div>
-        <main>
-        <div id="mainContainer"></div>
-        <h1 id="selectidProduct"></h1>
-        <!-- Add the content of your site here via javascript -->
-        <h4>TotalPrice</h4  >
-        <div id="totalPrice">0</div>
-         </main>
+        <main class="cart-product">
+            <div class="shoppincart-title-div">
+                <h1 class="shoppincart-title"><i class="fas fa-shopping-cart shoppincart-title-icon"></i> Kundvagn</h1>
+            </div>
+            
+            <div id="mainContainerCart"></div>
+            <h1 id="selectidProduct"></h1>
+            <!-- Add the content of your site here via javascript -->
+           
+            <div id="totalPrice">0</div>
+            <button type="button"  class="fa fa-check btn btn-primary">  Slutför ditt köp</button>
+         
+        </main>
 
 
 

@@ -1,4 +1,3 @@
-
 function getCartArray() {
    return JSON.parse(localStorage.getItem('cart'))
 }
@@ -7,53 +6,48 @@ function initSite() {
    renderProduct();
    saveProductCount();
 }
+
 function renderProduct(){
-    var mainContainer = document.getElementById("mainContainer");
+    var mainContainerCart = document.getElementById("mainContainerCart");
     var totalPrice= document.getElementById("totalPrice");
-    mainContainer.innerHTML = "";
+    mainContainerCart.innerHTML = "";
     var cart = getCartArray();
     var totalPrice = 0
     for (var i = 0; i < cart.length; i++) {
-        var productContainer = createProductcard(cart[i], i);
-        mainContainer.appendChild(productContainer);
-        totalPrice += cart[i].price
-        document.getElementById("totalPrice").innerText = totalPrice
-      
-       
+        var productContainerCart = createProductcard(cart[i], i);
+        mainContainerCart.appendChild(productContainerCart);
+        totalPrice += cart[i].price 
     }
-   
-    console.log(totalPrice)
+    document.getElementById("totalPrice").innerText = "Totalt pris:" +" "+ totalPrice + " " + "KR" 
  }
  
 function createProductcard(product, index) {
-   var productContainer = document.createElement("div");
-   productContainer.classList = "productContainer"
+   var productContainerCart = document.createElement("div");
+   productContainerCart.classList = "productContainerCart"
    var infoList= document.createElement("ul");
+   var imagelistOfProductsCart = document.createElement("img");
    var titlelistOfProducts = document.createElement("h3");
-   var descriptionlistOfProducts = document.createElement("p");
-   var imagelistOfProducts = document.createElement("img");
    var pricelistOfProducts = document.createElement("p");
    var buttonlistOfProducts = document.createElement("button");
-   imagelistOfProducts.classList = "imagelistOfProducts"
+   imagelistOfProductsCart.classList = "imagelistOfProductsCart"
+   imagelistOfProductsCart.innerText = product.image;
    titlelistOfProducts.innerText = product.title;
-   descriptionlistOfProducts.innerText = product.description;
-   imagelistOfProducts.innerText = product.image;
+   buttonlistOfProducts.classList = "fa fa-trash btn btn-danger";
    pricelistOfProducts.innerText = product.price + " " + "KR";
-   buttonlistOfProducts.innerHTML = "Delet item";
+   buttonlistOfProducts.innerHTML = " Ta bort";
 
    buttonlistOfProducts.onclick = function() {
-    removeProductFromCart(index)
-       
+    removeProductFromCart(index) 
    }
-   imagelistOfProducts.src= "./assets/" + product.image;
-   productContainer.appendChild(infoList);
-   productContainer.appendChild(titlelistOfProducts);
-   productContainer.appendChild(descriptionlistOfProducts);
-   productContainer.appendChild(imagelistOfProducts);
-   productContainer.appendChild(pricelistOfProducts);
-   productContainer.appendChild(buttonlistOfProducts);
-   return productContainer;
+   imagelistOfProductsCart.src= "./assets/" + product.image;
+   productContainerCart.appendChild(infoList);
+   productContainerCart.appendChild(imagelistOfProductsCart);
+   productContainerCart.appendChild(titlelistOfProducts);
+   productContainerCart.appendChild(pricelistOfProducts);
+   productContainerCart.appendChild(buttonlistOfProducts);
+   return productContainerCart;
 }
+
 function removeProductFromCart(index) {
     var collectedCart = getCartArray()
     if(collectedCart) {
@@ -62,34 +56,10 @@ function removeProductFromCart(index) {
     localStorage.setItem('cart', JSON.stringify(collectedCart));
     console.log(collectedCart)
     renderProduct();
- }
- function printCartNumber() {
-    var totalPrice = document.getElementById("totalPrice");
-    var totalPrice = 0
-    for (var i = 0; i < cart.length; i++) {
-    
-        totalPrice += cart[i].price
-        }
-        console.log(totalPrice)
-   }
- function ShowTotalPrice (){
-    var totalPrice = document.getElementById("totalPrice");
-    var totalPrice = 0
-    for (var i = 0; i < cart.length; i++) {
-        totalPrice.appendChild(productContainer);
-        totalPrice += cart[i].price
-        }
-        console.log(totalPrice)
-
-    renderProduct();
+    saveProductCount()
  }
 
-
-   function printCartNumber() {
-
-   }
-
-   function saveProductCount() {
-      var collectedCart = JSON.parse(localStorage.getItem('cart'));
-      document.getElementById("counter").innerHTML = collectedCart.length;
-  }
+function saveProductCount() {
+   var collectedCart = JSON.parse(localStorage.getItem('cart'));
+   document.getElementById("counter").innerHTML = collectedCart.length;
+}
