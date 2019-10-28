@@ -17,12 +17,8 @@ function renderProduct(){
         var productContainer = createProductcard(cart[i], i);
         mainContainer.appendChild(productContainer);
         totalPrice += cart[i].price
-        document.getElementById("totalPrice").innerText = totalPrice
-      
-       
+        document.getElementById("totalPrice").innerText = totalPrice  
     }
-   
-    console.log(totalPrice)
  }
  
 function createProductcard(product, index) {
@@ -43,7 +39,6 @@ function createProductcard(product, index) {
 
    buttonlistOfProducts.onclick = function() {
     removeProductFromCart(index)
-       
    }
    imagelistOfProducts.src= "./assets/" + product.image;
    productContainer.appendChild(infoList);
@@ -62,6 +57,7 @@ function removeProductFromCart(index) {
     localStorage.setItem('cart', JSON.stringify(collectedCart));
     console.log(collectedCart)
     renderProduct();
+    saveProductCount();
  }
  function printCartNumber() {
     var totalPrice = document.getElementById("totalPrice");
@@ -83,12 +79,6 @@ function removeProductFromCart(index) {
 
     renderProduct();
  }
-
-
-   function printCartNumber() {
-
-   }
-
    function saveProductCount() {
       var collectedCart = JSON.parse(localStorage.getItem('cart'));
       document.getElementById("counter").innerHTML = collectedCart.length;
