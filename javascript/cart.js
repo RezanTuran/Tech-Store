@@ -2,17 +2,29 @@
 function getCartArray() {
    return JSON.parse(localStorage.getItem('cart'))
 }
+
 function initSite() {
    renderProduct();
 }
 function renderProduct(){
-   var cart = getCartArray()
-   for (var i = 0; i < cart.length; i++) {
-       var productContainer = createProductcard(cart[i]);
-       document.getElementById("mainContainer").appendChild(productContainer);
-   }
-}
-function createProductcard(product) {
+    var mainContainer = document.getElementById("mainContainer");
+    var totalPrice= document.getElementById("totalPrice");
+    mainContainer.innerHTML = "";
+    var cart = getCartArray();
+    var totalPrice = 0
+    for (var i = 0; i < cart.length; i++) {
+        var productContainer = createProductcard(cart[i], i);
+        mainContainer.appendChild(productContainer);
+        totalPrice += cart[i].price
+        document.getElementById("totalPrice").innerText = totalPrice
+      
+       
+    }
+   
+    console.log(totalPrice)
+ }
+ 
+function createProductcard(product, index) {
    var productContainer = document.createElement("div");
    productContainer.classList = "productContainer"
    var infoList= document.createElement("ul");
@@ -26,9 +38,11 @@ function createProductcard(product) {
    descriptionlistOfProducts.innerText = product.description;
    imagelistOfProducts.innerText = product.image;
    pricelistOfProducts.innerText = product.price + " " + "KR";
-   buttonlistOfProducts.innerHTML = "Lägg till i kundvagnen";
+   buttonlistOfProducts.innerHTML = "Delet item";
+
    buttonlistOfProducts.onclick = function() {
-       addProductToCart(product)
+    removeProductFromCart(index)
+       
    }
    imagelistOfProducts.src= "./assets/" + product.image;
    productContainer.appendChild(infoList);
@@ -39,21 +53,37 @@ function createProductcard(product) {
    productContainer.appendChild(buttonlistOfProducts);
    return productContainer;
 }
-function addProductToCart(product) {
-   var collectedCart = JSON.parse(localStorage.getItem('cart'));
-   if(collectedCart) {
-       collectedCart.push(product);
-   } else {
-       collectedCart = [];
-       collectedCart.push(product);
+function removeProductFromCart(index) {
+    var collectedCart = getCartArray()
+    if(collectedCart) {
+        collectedCart.splice(index, 1);
+    }
+    localStorage.setItem('cart', JSON.stringify(collectedCart));
+    console.log(collectedCart)
+    renderProduct();
+ }
+ function printCartNumber() {
+    var totalPrice = document.getElementById("totalPrice");
+    var totalPrice = 0
+    for (var i = 0; i < cart.length; i++) {
+    
+        totalPrice += cart[i].price
+        }
+        console.log(totalPrice)
    }
-   document.getElementById("counter").innerHTML = collectedCart.length;
-   localStorage.setItem('cart', JSON.stringify(collectedCart));
-   console.log(collectedCart);
-       // Hämta cart från localStorage.
-   // Kolla om cartlistan du hämtat inte existerar.
-   // Om ej existerar, skapa en ny lista & pusha in den nya produkten.
-   // Om existerar, pusha in den nya produkten.
-   // Spara upp listan till localStorage
-   console.log(product)
-}
+ function ShowTotalPrice (){
+    var totalPrice = document.getElementById("totalPrice");
+    var totalPrice = 0
+    for (var i = 0; i < cart.length; i++) {
+        totalPrice.appendChild(productContainer);
+        totalPrice += cart[i].price
+        }
+        console.log(totalPrice)
+
+    renderProduct();
+ }
+
+
+   function printCartNumber() {
+
+   }
