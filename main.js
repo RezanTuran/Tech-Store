@@ -1,6 +1,5 @@
 var listOfProducts;
-
-// TEST
+/**This function loads the objects form our json file declares them and runs another function */
 function loadProducts() {
     fetch("./products.json")
     .then(function(response) {
@@ -12,25 +11,24 @@ function loadProducts() {
     });
     
 }
-
+/**This function runs when the site is loaded and runs the two functions */
 function initSite() {
     loadProducts();
     saveProductCount();
 }
-
+/**This function tells that we will render our product in body and then runs the function to render the content */
 function addProductsToWebpage() {
     var body = document.getElementsByTagName("body")[0]
-    console.log(body);
     renderProduct();
 }
-
+/**This function creates a loop to so that we can reneder our content in the other function */
 function renderProduct(){
     for (var i = 0; i < listOfProducts.length; i++) {
         var productContainer = createProductcard(listOfProducts[i]);
         document.getElementById("mainContainer").appendChild(productContainer);
     }
 }
-
+/**This function prints all our products on our body */
 function createProductcard(product) {
     var productContainer = document.createElement("div");
     productContainer.classList = "productContainer"
@@ -64,7 +62,7 @@ function createProductcard(product) {
 
     return productContainer;
 }
-
+/**This function lets us save the selected product to localstorage */
 function addProductToCart(product) {
     var collectedCart = JSON.parse(localStorage.getItem('cart'));
 
@@ -76,11 +74,9 @@ function addProductToCart(product) {
     }
     document.getElementById("counter").innerHTML = collectedCart.length;
     localStorage.setItem('cart', JSON.stringify(collectedCart));
-
-
-    console.log(product)   
+ 
 }
-
+/**This function lets our two pages keep the productcart in sync */
 function saveProductCount() {
     var collectedCart = JSON.parse(localStorage.getItem('cart'));
     document.getElementById("counter").innerHTML = collectedCart.length;
