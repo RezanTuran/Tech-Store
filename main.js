@@ -1,6 +1,5 @@
 var listOfProducts;
-
-/** Get products from the json file and store it in a gobal variable */
+/**This function loads the objects form our json file declares them and runs another function */
 function loadProducts() {
     fetch("./products.json")
     .then(function(response) {
@@ -12,61 +11,73 @@ function loadProducts() {
     });
     
 }
-
-
-
-
+/**This function runs when the site is loaded and runs the two functions */
 function initSite() {
     loadProducts();
-    // This would also be a good place to initialize other parts of the UI
+    saveProductCount();
 }
-
-
-/** Uses the loaded products data to create a visible product list on the website */
+/**This function tells that we will render our product in body and then runs the function to render the content */
 function addProductsToWebpage() {
-    // Check your console to see that the products are stored in the listOfProducts varible.
-    var body =document.getElementsByTagName("body")[0]
-    console.log(body);
-    var continer = document.createElement("div");
-    continer.classList = "container"
-
-    for(var i = 0; i< listOfProducts.length; i++){
-        var selectedProduct = listOfProducts[i]
-        var productCard=document.createElement("div");
-        var infoList=document.createElement("ul");
-        var titlelistOfProducts = document.createElement("h3");
-        var descriptionlistOfProducts = document.createElement("p");
-        var imagelistOfProducts = document.createElement("img"); 
-        var pricelistOfProducts = document.createElement("p");
-      
-     
-        titlelistOfProducts.innerText = selectedProduct.title;
-        descriptionlistOfProducts.innerText = selectedProduct.description;
-        imagelistOfProducts.innerText = selectedProduct.image;
-        pricelistOfProducts.innerText = selectedProduct.price;
-
-        imagelistOfProducts.src= "./assets/" + selectedProduct.image;
-
-        infoList.appendChild(titlelistOfProducts);
-        infoList.appendChild(descriptionlistOfProducts);
-        infoList.appendChild(imagelistOfProducts);
-        infoList.appendChild(pricelistOfProducts);
-
-        productCard.appendChild(infoList);
-        continer.appendChild(productCard);
-        
-    }
-
-    body.appendChild(continer);
+    document.getElementsByTagName("body")[0]
+    renderProduct();
 }
+/**This function creates a loop to so that we can reneder our content in the other function */
+function renderProduct(){
+    for (var i = 0; i < listOfProducts.length; i++) {
+        var productContainer = createProductcard(listOfProducts[i]);
+        document.getElementById("mainContainer").appendChild(productContainer);
+    }
+}
+/**This function prints all our products on our body */
+function createProductcard(product) {
+    var productContainer = document.createElement("div");
+    productContainer.classList = "productContainer"
 
-    console.log(listOfProducts);
-
-    // Add your code here, remember to brake your code in to smaller function blocks
-    // to reduce complexity and increase readability. Each function should have
-    // an explainetory comment like the one for this function, see row 22.
+    var infoList= document.createElement("ul");
+    var titlelistOfProducts = document.createElement("h3");
+    var descriptionlistOfProducts = document.createElement("p");
+    var imagelistOfProducts = document.createElement("img"); 
+    var pricelistOfProducts = document.createElement("p");
+    var buttonlistOfProducts = document.createElement("button");
     
-    // TODO: Remove the console.log and these comments when you've read them.
+    imagelistOfProducts.classList = "imagelistOfProducts";
+    titlelistOfProducts.innerText = product.title;
+    descriptionlistOfProducts.innerText = product.description;
+    imagelistOfProducts.innerText = product.image;
+    buttonlistOfProducts.classList = "fas fa-cart-arrow-down btn btn-primary";
+    pricelistOfProducts.innerText = product.price + " " + "KR";
+    buttonlistOfProducts.innerHTML = " Lägg till i kundvagnen";
 
+    buttonlistOfProducts.onclick = function() {
+        addProductToCart(product)
+    }
+        
+    imagelistOfProducts.src= "./assets/" + product.image;
+    productContainer.appendChild(infoList);
+    productContainer.appendChild(titlelistOfProducts);
+    productContainer.appendChild(descriptionlistOfProducts);
+    productContainer.appendChild(imagelistOfProducts);
+    productContainer.appendChild(pricelistOfProducts);
+    productContainer.appendChild(buttonlistOfProducts);
 
+    return productContainer;
+}
+/**This function lets us save the selected product to localstorage */
+function addProductToCart(product) {
+    var collectedCart = JSON.parse(localStorage.getItem('cart'));
 
+    if(collectedCart) {
+        collectedCart.push(product);
+    } else {
+        collectedCart = [];
+        collectedCart.push(product);
+    }
+    document.getElementById("counter").innerHTML = collectedCart.length;
+    localStorage.setItem('cart', JSON.stringify(collectedCart));
+ 
+}
+/**This function lets our two pages keep the productcart in sync */
+function saveProductCount() {
+    var collectedCart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById("counter").innerHTML = collectedCart.length;
+}

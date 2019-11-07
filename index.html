@@ -10,19 +10,19 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous"> <!-- ### Fontawsome Icon Bibliotek ###-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- ### CDN Link For Jquery  ###-->
         <link rel="stylesheet" href="css/style.css"> 
-        <script src="./main.js"></script>
+        <script src="main.js"></script>
     </head>
-    <body class="testClass" onload="initSite()">
+    <body onload="initSite()">
         <header>
             <div class="title-and-shopping-cart">
                 <a href="index.html"><h1>TechStore</h1></a>
-                <a href="shopping-cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="shopping-cart.html"><span><i id="counter" class="fas"></i></span><i class="fas fa-shopping-cart"></i></a>
             </div>
         </header>
 
         <main>
-              
-            <!-- Add the content of your site here via javascript -->
+            <div id="mainContainer"></div>
+            <h1 id="selectidProduct"></h1>
         </main>
 
     </body>
