@@ -18,7 +18,7 @@ function initSite() {
 }
 /**This function tells that we will render our product in body and then runs the function to render the content */
 function addProductsToWebpage() {
-    var body = document.getElementsByTagName("body")[0]
+    document.getElementsByTagName("body")[0]
     renderProduct();
 }
 /**This function creates a loop to so that we can reneder our content in the other function */
